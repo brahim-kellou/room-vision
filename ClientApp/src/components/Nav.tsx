@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Divider, Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar } from '@mui/material';
-import { Circle, PieChart, Settings } from 'react-feather';
+import { PieChart, Settings, Video } from 'react-feather';
 import {
   Link,
 } from "react-router-dom";
@@ -19,7 +19,7 @@ function Nav({ drawerWidth, mobileOpen, handleDrawerToggle }: DrawerProps) {
       <List>
         <ListItem button component={Link} to="/live">
           <ListItemIcon>
-            <Circle color="red" size={20} />
+            <Video color="red" size={20} />
           </ListItemIcon>
           <ListItemText primary={"Live"} />
         </ListItem>
