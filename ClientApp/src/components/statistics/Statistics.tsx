@@ -7,7 +7,7 @@ import { Line } from 'react-chartjs-2';
 export default function Statistics() {
 
   var max = 0;
-  var width = 840;
+  var width = 600;
   var height = 400;
   var len = 200;
 
@@ -101,7 +101,7 @@ export default function Statistics() {
         </Typography>
         <Grid container spacing={6}>
           <Grid item xs={6}>
-            <div className="heatmap" style={{ height: height }}></div>
+            <div className="heatmap" style={{ height: height, width: width }}></div>
           </Grid>
         </Grid>
       </Box>

@@ -2,16 +2,18 @@ import React from 'react';
 import { makeStyles } from '@mui/styles';
 import Card from '@mui/material/Card';
 import { Box, CardContent, Typography } from '@mui/material';
+import { Icon } from 'react-feather';
 
 interface MetricProps {
   title: string,
   body: string,
-  color: string
+  color: string,
+  children?: React.ReactNode,
 }
 
 const useStyles = makeStyles({
   box: {
-    position: 'relative'
+    position: 'relative',
   },
   line: {
     position: 'absolute',
@@ -26,7 +28,7 @@ const useStyles = makeStyles({
   }
 });
 
-function Metric({ title, body, color }: MetricProps) {
+function Metric({ title, body, color, children }: MetricProps) {
   const classes = useStyles();
   const opacity: string = '05';
   const cardBGColor: string = color + opacity;
@@ -36,12 +38,19 @@ function Metric({ title, body, color }: MetricProps) {
       <Box component="div" className={classes.line} style={{ backgroundColor: color }}></Box>
       <Card sx={{ maxWidth: 345 }} classes={{ root: classes.card }} style={{ backgroundColor: cardBGColor }}>
         <CardContent>
-          <Typography variant="subtitle2">
-            {title}
-          </Typography>
-          <Typography variant="h4" fontWeight={600} style={{ color: color }}>
-            {body}
-          </Typography>
+          <Box sx={{ display: 'flex' }}>
+            {children ? <Box sx={{ display: 'flex', alignItems: 'center', padding: 2 }}>
+              {children}
+            </Box> : null}
+            <Box>
+              <Typography variant="subtitle2">
+                {title}
+              </Typography>
+              <Typography variant="h4" fontWeight={600} style={{ color: color }}>
+                {body}
+              </Typography>
+            </Box>
+          </Box>
         </CardContent>
       </Card>
     </Box>

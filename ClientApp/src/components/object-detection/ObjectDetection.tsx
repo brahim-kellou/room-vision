@@ -1,6 +1,5 @@
 import { Box } from '@mui/system';
 import React, { useEffect, useRef } from 'react';
-import useLoadMaskModel from './useLoadMaskModel';
 import useLoadModel from './useLoadModel';
 import useLoadVideo from './useLoadVideo';
 
@@ -38,16 +37,16 @@ const ObjectDetection: React.FC<ObjectDetectionOptions> = ({
     const ctx = canvasRef.current.getContext("2d");
 
     const detect = async () => {
-      const objects = await model.detect(videoRef.current)
+      const persons = (await model.detect(videoRef.current)).filter((obj: { class: string; }) => obj.class === 'person');
 
-      onDetection(objects);
+      onDetection(persons);
 
       ctx.clearRect(0, 0, width, height);
       ctx.save();
       ctx.drawImage(video, 0, 0, width, height);
       ctx.restore();
 
-      draw(objects, ctx);
+      draw(persons, ctx);
 
       reqAnimation = requestAnimationFrame(detect);
     }
