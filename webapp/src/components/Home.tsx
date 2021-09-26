@@ -11,7 +11,7 @@ import {
 import Nav from './Nav';
 import Header from './Header';
 import Statistics from './statistics/Statistics';
-import Live from './live/Live';
+import LiveAnalysis from './live-analysis/LiveAnalysis';
 
 const drawerWidth = 240;
 
@@ -38,14 +38,13 @@ function Home() {
         <Box sx={{ margin: 3 }}>
           <Switch>
             <Route path="/live">
-              <Live />
+              <LiveAnalysis />
             </Route>
             <Route path="/statistics">
               <Statistics />
             </Route>
           </Switch>
         </Box>
-
       </Box>
     </Box>
   );

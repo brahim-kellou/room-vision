@@ -10,7 +10,7 @@ const red = '#df0a56'
 const green = '#3bdaae'
 const orange = '#e16a1a'
 
-export default function Live() {
+export default function LiveAnalysis() {
   const [max, setMax] = React.useState<number>(10);
   const [percent, setPercent] = React.useState<number>(0);
   const [editable, setEditable] = React.useState(false);
