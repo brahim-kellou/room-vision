@@ -5,8 +5,8 @@ import h337 from "heatmap.js";
 import { Line } from 'react-chartjs-2';
 import { API_Get_Positions_Endpoint } from '../../config';
 
-const width = 600;
-const height = 400;
+const width = 1280;
+const height = 720;
 
 export default function Statistics() {
   const [isHeatMapLoaded, setIsHeatMapLoaded] = React.useState<boolean>(false);
@@ -44,15 +44,15 @@ export default function Statistics() {
     labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
     datasets: [
       {
-        label: "First dataset",
-        data: [33, 53, 85, 41, 44, 65, 33, 53, 85, 41, 44, 65, 33, 53, 85, 41, 44, 65, 33, 53, 85, 41, 44, 65, 33, 53, 85, 41, 44, 65],
+        label: "Number of persons in the area",
+        data: [10, 8, 5, 11, 14, 15, 11, 14, 15, 10, 5, 6, 13, 13, 15, 11, 14, 15, 13, 13, 13, 11, 14, 15, 13, 13, 10, 10, 4, 6],
         fill: true,
         backgroundColor: "rgba(75,192,192,0.2)",
         borderColor: "rgba(75,192,192,1)"
       },
       {
-        label: "Second dataset",
-        data: [33, 25, 35, 51, 54, 76, 33, 25, 35, 51, 54, 76, 33, 25, 35, 51, 54, 76, 33, 25, 35, 51, 54, 76, 33, 25, 35, 51, 54, 76],
+        label: "Number of persons wearing a mask",
+        data: [5, 4, 3, 6, 10, 10, 8, 8, 6, 5, 5, 4, 10, 10, 10, 10, 10, 11, 12, 12, 12, 10, 9, 9, 12, 10, 9, 8, 2, 3],
         fill: false,
         borderColor: "#742774"
       }
@@ -70,16 +70,10 @@ export default function Statistics() {
             <Box sx={{ flexGrow: 1 }}>
               <Grid container spacing={2}>
                 <Grid item xs={6}>
-                  <Metric title="Average distance between" body="1.2 m" color="#df0a56" />
+                  <Metric title="Average distance between 2 people" body="1.2 m" color="#df0a56" />
                 </Grid>
                 <Grid item xs={6}>
-                  <Metric title="Average queeing time" body="10 min" color="#3bdaae" />
-                </Grid>
-                <Grid item xs={6}>
-                  <Metric title="Average distance" body="40 m" color="#e16a1a" />
-                </Grid>
-                <Grid item xs={6}>
-                  <Metric title="Average time spent" body="20 min" color="#6743e6" />
+                  <Metric title="Average distance covered by a person" body="31 m" color="#e16a1a" />
                 </Grid>
                 <Grid item xs={6}>
                   <Metric title="Social distancing violations" body="5 times" color="#62559d" />
