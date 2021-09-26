@@ -2,7 +2,6 @@ import React from 'react';
 import { makeStyles } from '@mui/styles';
 import Card from '@mui/material/Card';
 import { Box, CardContent, Typography } from '@mui/material';
-import { Icon } from 'react-feather';
 
 interface MetricProps {
   title: string,

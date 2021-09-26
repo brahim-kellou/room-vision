@@ -36,7 +36,7 @@ export default function LiveAnalysis() {
     )
     setColor(newColor);
     setPercent(countPerson * 100 / max);
-  }, [countPerson])
+  }, [countPerson, max])
 
   const submit = (e: any) => {
     e.preventDefault();

@@ -55,7 +55,7 @@ const ObjectDetection: React.FC<ObjectDetectionOptions> = ({
     return () => {
       cancelAnimationFrame(reqAnimation);
     }
-  }, [model, video])
+  }, [model, video, height, onDetection, width])
 
   return (
     <Box
