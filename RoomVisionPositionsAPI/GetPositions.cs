@@ -1,12 +1,10 @@
 using System;
-using System.IO;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 using System.Data.SqlClient;
 using System.Collections.Generic;
 using RoomVisionPositionsAPI.Entities;
@@ -38,8 +36,8 @@ namespace RoomVisionPositionsAPI
                         {
                             listPositions.Add(new Position() 
                                 {
-                                    X = (decimal)reader.GetValue(0), 
-                                    Y = (decimal)reader.GetValue(1)
+                                    X = (int)reader.GetValue(0), 
+                                    Y = (int)reader.GetValue(1)
                                 }
                             );
                         }

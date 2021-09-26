@@ -6,7 +6,7 @@ namespace RoomVisionPositionsAPI.Entities
 {
     class Position
     {
-        public decimal X { get; set; }
-        public decimal Y { get; set; }
+        public int X { get; set; }
+        public int Y { get; set; }
     }
 }

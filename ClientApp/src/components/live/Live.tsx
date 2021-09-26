@@ -62,8 +62,8 @@ export default function Live() {
 
   const addPosition = () => {
     actualPositionsRef.current.forEach(position => {
-      let x = (position.bbox[0] + position.bbox[2]) / 2;
-      let y = (position.bbox[1] + position.bbox[3]) / 2;
+      let x = Math.floor((position.bbox[0] + position.bbox[2]) / 2);
+      let y = Math.floor((position.bbox[1] + position.bbox[3]) / 2);
       listPersonsPositionsRef.current.push({ x, y });
     });
   }
@@ -104,7 +104,7 @@ export default function Live() {
       <Box>
         <Grid container spacing={4}>
           <Grid item xs={8}>
-            <ObjectDetection width={600} height={400} onDetection={onDetection} />
+            <ObjectDetection width={1280} height={720} onDetection={onDetection} />
           </Grid>
           <Grid item xs={4}>
             <Box sx={{ marginBottom: 2 }}>

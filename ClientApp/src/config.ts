@@ -1,6 +1,7 @@
 const _DEV_ = !process.env.NODE_ENV || process.env.NODE_ENV === 'development'
 
-const DEV_HOST = 'http://localhost:7071';
+// const DEV_HOST = 'http://localhost:7071';
+const DEV_HOST = 'https://room-vision-api.azurewebsites.net'
 const PROD_HOST = 'https://room-vision-api.azurewebsites.net';
 const HOST = _DEV_ ? DEV_HOST : PROD_HOST;
 

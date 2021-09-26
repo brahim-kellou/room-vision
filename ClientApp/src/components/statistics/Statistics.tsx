@@ -1,15 +1,44 @@
-import { Box, Grid, Typography } from '@mui/material';
+import { Box, CircularProgress, Grid, Typography } from '@mui/material';
 import React from 'react';
 import Metric from './Metric';
 import h337 from "heatmap.js";
 import { Line } from 'react-chartjs-2';
+import { API_Get_Positions_Endpoint } from '../../config';
+
+const width = 600;
+const height = 400;
 
 export default function Statistics() {
+  const [isHeatMapLoaded, setIsHeatMapLoaded] = React.useState<boolean>(false);
+  const [points, setPoints] = React.useState<any[]>([]);
+  const heatmapInstanceRef = React.useRef<any>(null);
 
-  var max = 0;
-  var width = 600;
-  var height = 400;
-  var len = 200;
+  React.useEffect(() => {
+    heatmapInstanceRef.current = h337.create({ container: document.querySelector('.heatmap') });
+    fetch(API_Get_Positions_Endpoint)
+      .then(response => response.json())
+      .then(data => {
+        for (let i = 0; i < data.length; i++) {
+          data[i]['value'] = 1;
+        }
+        setPoints(data);
+        setIsHeatMapLoaded(true);
+      });
+  }, []);
+
+  React.useEffect(() => {
+    if (points.length) {
+      initHeatMapData()
+    }
+  }, [points])
+
+  const initHeatMapData = () => {
+    heatmapInstanceRef.current.setData({
+      max: 5,
+      data: points
+    });
+    console.log(heatmapInstanceRef.current);
+  }
 
   const data = {
     labels: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30],
@@ -30,34 +59,6 @@ export default function Statistics() {
     ]
   };
 
-  React.useEffect(() => {
-    var heatmapInstance = h337.create({
-      // only container is required, the rest will be defaults
-      container: document.querySelector('.heatmap')
-    });
-
-    var points = [];
-
-    while (len--) {
-      var val = Math.floor(Math.random() * 100);
-      max = Math.max(max, val);
-      var point = {
-        x: Math.floor(Math.random() * width),
-        y: Math.floor(Math.random() * height),
-        value: val
-      };
-      points.push(point);
-    }
-
-    // heatmap data format
-    var data = {
-      max: max,
-      data: points
-    };
-    // if you have a set of datapoints always use setData instead of addData
-    // for data initialization
-    heatmapInstance.setData(data);
-  });
   return (
     <>
       <Box style={{ margin: '24px 0' }}>
@@ -101,7 +102,9 @@ export default function Statistics() {
         </Typography>
         <Grid container spacing={6}>
           <Grid item xs={6}>
-            <div className="heatmap" style={{ height: height, width: width }}></div>
+            <div className="heatmap" style={{ height: height, width: width, display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+              {isHeatMapLoaded ? null : <CircularProgress />}
+            </div>
           </Grid>
         </Grid>
       </Box>
